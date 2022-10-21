@@ -1,6 +1,7 @@
 import '@sushiswap/ui/index.css'
 
-import { App, ThemeProvider, ToastContainer } from '@sushiswap/ui'
+import { App,ToastContainer } from '@sushiswap/ui'
+import { ThemeProvider } from "next-themes"
 import { client } from '@sushiswap/wagmi'
 import { Header } from 'components'
 import { SUPPORTED_CHAINS } from 'config'
@@ -69,7 +70,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
       />
       <WagmiConfig client={client}>
         <ReduxProvider store={store}>
-          <ThemeProvider>
+          <ThemeProvider enableSystem={true} attribute="class">
             <App.Shell>
               <DefaultSeo {...SEO} />
               <Header />

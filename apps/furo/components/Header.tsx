@@ -6,8 +6,10 @@ import { Wallet } from '@sushiswap/wagmi'
 import { SUPPORTED_CHAINS } from 'config'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import React, {FC} from 'react'
 import { useAccount, useConnect } from 'wagmi'
+import { useTheme } from 'next-themes'
+import {MoonIcon, SunIcon} from "@heroicons/react/solid";
 
 export const Header: FC = () => {
   const isMounted = useIsMounted()
@@ -22,13 +24,29 @@ export const Header: FC = () => {
     },
   })
 
+  const {systemTheme , theme, setTheme} = useTheme ()
+  const renderThemeChanger= () => {
+    if (!isMounted) return null
+    const currentTheme = theme === "system" ? systemTheme : theme ;
+    if(currentTheme ==="light"){
+      return (
+        <SunIcon className="w-6 h-6 text-yellow-500 " role="button" onClick={() => setTheme('dark')} />
+      )
+    }
+    else {
+      return (
+        <MoonIcon className="w-6 h-6 text-gray-100 " role="button" onClick={() => setTheme('light')} />
+      )
+    }
+  }
+
   return (
     <App.Header
       appType={AppType.Furo}
       className={router.pathname === '/' ? '' : 'bg-slate-900 border-b border-slate-200/5'}
       withScrollBackground={router.pathname === '/'}
     >
-      <div className="flex items-center gap-2 whitespace-nowrap">
+      <div className="flex items-center gap-2 whitespace-nowrap dark:bg-red">
         <Wallet.Button
           size="sm"
           hack={connect}
@@ -60,6 +78,7 @@ export const Header: FC = () => {
           </Menu>
         )}
       </div>
+      <div className="flex items-center justify-center ml-2">{renderThemeChanger()}</div>
     </App.Header>
   )
 }
