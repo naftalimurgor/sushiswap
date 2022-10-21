@@ -66,7 +66,7 @@ export const GradedVestingDetailsSection = () => {
           name="stepAmount"
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <CurrencyInput.Base
-              className="ring-offset-slate-900"
+              className="ring-offset-slate-900 dark:bg-input dark:shadow-none dark:!ring-0"
               onChange={onChange}
               value={value}
               currency={currency}
@@ -105,7 +105,7 @@ export const GradedVestingDetailsSection = () => {
                   onChange={onChange}
                   value={value}
                   error={!!error?.message}
-                  className="ring-offset-slate-900"
+                  className="ring-offset-slate-900 dark:bg-input dark:shadow-none"
                 />
                 <Form.Error message={error?.message} />
               </>
@@ -120,7 +120,7 @@ export const GradedVestingDetailsSection = () => {
               <>
                 <Select
                   button={
-                    <Select.Button error={!!error?.message} className="ring-offset-slate-900">
+                    <Select.Button error={!!error?.message} className="ring-offset-slate-900 dark:bg-input dark:shadow-none">
                       {value.label}
                     </Select.Button>
                   }

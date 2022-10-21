@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, Form } from '@sushiswap/ui'
+import {Button, Form, Tab, Typography} from '@sushiswap/ui'
 import { FC, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount, useNetwork } from 'wagmi'
@@ -64,18 +64,64 @@ export const CreateForm: FC = () => {
   //     })
   //   })
 
+  const SubmitButton = () => {
+    return(
+      <Form.Buttons>
+        <Button type="submit" color="blue" disabled={!isValid || isValidating}>
+          Review Details
+        </Button>
+      </Form.Buttons>
+    )}
+
   return (
     <>
       <FormProvider {...methods}>
-        <Form header="Create vesting" onSubmit={methods.handleSubmit(() => setReview(true))}>
-          <GeneralDetailsSection />
-          <CliffDetailsSection />
-          <GradedVestingDetailsSection />
-          <Form.Buttons>
-            <Button type="submit" color="blue" disabled={!isValid || isValidating}>
-              Review Details
-            </Button>
-          </Form.Buttons>
+        <Form header="Create vesting" onSubmit={methods.handleSubmit(() => setReview(true))} className="border-none w-full px-10">
+          <Tab.Group
+            as="section"
+            className={`z-10 overflow-hidden overflow-x-auto rounded-xl sm:rounded-2xl bg-primary`}
+            defaultIndex={0}
+          >
+            <Tab.List className="bg-secondary py-8 flex text-center rounded-none border-none dark:bg-primary">
+              <Tab
+                as={Typography}
+                weight={600}
+                size="sm"
+                className="bg-transparent focus:text-accent hover:text-accent"
+              >
+                General Details
+              </Tab>
+              <Tab
+                as={Typography}
+                weight={600}
+                className="bg-transparent focus:text-accent hover:text-accent"
+              >
+                Cliff Details
+              </Tab>
+              <Tab
+                as={Typography}
+                weight={600}
+                className="bg-transparent focus:text-accent hover:text-accent"
+              >
+                Vesting Details
+              </Tab>
+            </Tab.List>
+            <Tab.Panels className="bg-secondary px-3 pb-8 text-typo-primary font-bold lg:px-8 dark:bg-primary">
+              <Tab.Panel>
+                <GeneralDetailsSection />
+                <SubmitButton />
+              </Tab.Panel>
+              <Tab.Panel>
+                <CliffDetailsSection />
+                <SubmitButton />
+              </Tab.Panel>
+              <Tab.Panel>
+                <GradedVestingDetailsSection />
+                <SubmitButton />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
+
         </Form>
       </FormProvider>
       {validatedData && review && (

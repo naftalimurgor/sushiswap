@@ -47,7 +47,7 @@ export const CliffDetailsSection: FC = () => {
                 onChange={onChange}
                 value={value}
                 error={!!error?.message}
-                className="!ring-offset-slate-900"
+                className="!ring-offset-slate-900 text-slate-500 dark:text-typo-primary dark:bg-input dark:shadow-none"
               />
               <Form.Error message={error?.message} />
             </>
@@ -60,7 +60,7 @@ export const CliffDetailsSection: FC = () => {
           name="cliffAmount"
           render={({ field: { onChange, value }, fieldState: { error: validationError } }) => (
             <CurrencyInput
-              className="ring-offset-slate-900"
+              className="ring-offset-slate-900 dark:bg-input dark:shadow-none"
               fundSource={fundSource}
               account={address}
               onError={(message) => setError('cliffAmount', { type: 'custom', message })}

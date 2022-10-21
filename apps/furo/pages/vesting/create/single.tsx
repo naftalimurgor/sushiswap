@@ -2,6 +2,7 @@ import { Breadcrumb, BreadcrumbLink } from '@sushiswap/ui'
 import { Layout } from 'components'
 import { CreateForm } from 'components/vesting'
 import { NextSeo } from 'next-seo'
+import { SideNav } from "../../../components/SideNav";
 
 const LINKS: BreadcrumbLink[] = [
   {
@@ -18,9 +19,9 @@ const SingleVesting = () => {
   return (
     <>
       <NextSeo title="New Vesting" />
-      <Layout>
-        <Breadcrumb home="/dashboard" links={LINKS} />
-        <div className="mt-6">
+      <Layout maxWidth='full' className="dark:bg-input m-0 p-0 px-0 py-0 pb-0 mb-0">
+        <div className="flex gap-x-5 w-full">
+          <SideNav />
           <CreateForm />
         </div>
       </Layout>

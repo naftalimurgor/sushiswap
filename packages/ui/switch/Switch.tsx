@@ -48,7 +48,7 @@ export const Switch: FC<SwitchProps> = ({
       checked={checked}
       onChange={onChange}
       className={classNames(
-        checked ? 'bg-blue' : 'bg-white bg-opacity-[0.12]',
+        checked ? 'bg-blue' : 'bg-white bg-opacity-[0.12] dark:bg-input',
         `flex items-center relative inline-flex flex-shrink-0 rounded-full cursor-pointer ease-in-out duration-200 ${id}`
       )}
       style={{ height, width }}
@@ -56,7 +56,7 @@ export const Switch: FC<SwitchProps> = ({
       <span
         id={id}
         className={classNames(
-          checked ? 'translate-x-[32px]' : 'translate-x-[2px]',
+          checked ? 'translate-x-[32px]' : 'translate-x-[2px] dark:bg-primary',
           COLOR[color](checked),
           `transition-colors transition-transform pointer-events-none p-1 rounded-full ease-in-out duration-200 inline-flex items-center justify-center`
         )}

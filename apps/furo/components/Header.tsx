@@ -45,8 +45,9 @@ export const Header: FC = () => {
       appType={AppType.Furo}
       className={router.pathname === '/' ? '' : 'bg-slate-900 border-b border-slate-200/5'}
       withScrollBackground={router.pathname === '/'}
+      maxWidth="full"
     >
-      <div className="flex items-center gap-2 whitespace-nowrap dark:bg-red">
+      <div className="flex items-center gap-2 whitespace-nowrap">
         <Wallet.Button
           size="sm"
           hack={connect}

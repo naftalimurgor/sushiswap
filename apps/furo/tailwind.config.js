@@ -20,6 +20,15 @@ const tailwindConfig = {
           },
         },
       },
+      colors: {
+        primary: '#fbfcfd',
+        secondary: '#212b44',
+        accent: '#7edcbe',
+        input: '#f5f5f5',
+        disabled: '#959595',
+        muted: '#565656',
+        "typo-primary": '#1c365e',
+      }
     },
   },
 }
