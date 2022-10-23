@@ -1,20 +1,23 @@
-import { PaperAirplaneIcon } from '@heroicons/react/outline'
 import { useIsMounted } from '@sushiswap/hooks'
-import { App, Menu } from '@sushiswap/ui'
-import { AppType } from '@sushiswap/ui/app/Header'
-import { Wallet } from '@sushiswap/wagmi'
-import { SUPPORTED_CHAINS } from 'config'
-import Link from 'next/link'
+import {Button, Form, Menu, Select, Typography} from '@sushiswap/ui'
 import { useRouter } from 'next/router'
 import React, {FC} from 'react'
 import { useAccount, useConnect } from 'wagmi'
-import { useTheme } from 'next-themes'
-import {MoonIcon, SunIcon} from "@heroicons/react/solid";
+import {Controller, useForm} from "react-hook-form"
+import {UserIcon} from "@heroicons/react/solid"
 
-export const Header: FC = () => {
+type props = {
+  tabTitle: string;
+  subTabTitle?: string;
+}
+
+const whoCanCancel = ["Ethereum", "Ethereum", "Ethereum", "Ethereum"];
+
+export const Header: FC = ({tabTitle, subTabTitle} : props) => {
   const isMounted = useIsMounted()
   const { address, isConnected } = useAccount()
   const router = useRouter()
+  const {control} = useForm()
 
   const connect = useConnect({
     onSuccess: () => {
@@ -24,62 +27,43 @@ export const Header: FC = () => {
     },
   })
 
-  const {systemTheme , theme, setTheme} = useTheme ()
-  const renderThemeChanger= () => {
-    if (!isMounted) return null
-    const currentTheme = theme === "system" ? systemTheme : theme ;
-    if(currentTheme ==="light"){
-      return (
-        <SunIcon className="w-6 h-6 text-yellow-500 " role="button" onClick={() => setTheme('dark')} />
-      )
-    }
-    else {
-      return (
-        <MoonIcon className="w-6 h-6 text-gray-100 " role="button" onClick={() => setTheme('light')} />
-      )
-    }
-  }
-
   return (
-    <App.Header
-      appType={AppType.Furo}
-      className={router.pathname === '/' ? '' : 'bg-slate-900 border-b border-slate-200/5'}
-      withScrollBackground={router.pathname === '/'}
-      maxWidth="full"
-    >
-      <div className="flex items-center gap-2 whitespace-nowrap">
-        <Wallet.Button
-          size="sm"
-          hack={connect}
-          supportedNetworks={SUPPORTED_CHAINS}
-          className="border-none shadow-md"
-        />
-        {address && isMounted && isConnected && (
-          <Menu
-            button={
-              <Menu.Button
-                color="blue"
-                fullWidth
-                startIcon={<PaperAirplaneIcon width={18} className="transform rotate-45 -mt-0.5" />}
-                size="sm"
-                as="div"
+    <header className="w-full bg-white h-auto flex flex-col gap-y-[20px] items-center justify-between p-8 md:flex-row md:h-[80px]">
+      <Typography variant="h3" weight={600} className="text-typo-primary">
+        {`${tabTitle ? tabTitle : ''} ${subTabTitle ? "-" + subTabTitle : ''}`}
+      </Typography>
+      <div className="flex gap-x-[15px]">
+        <Controller
+          control={control}
+          name="cancelContract"
+          render={({field: {onChange, value}, fieldState: {error}}) => (
+            <>
+              <Select
+                button={
+                  <Select.Button error={!!error?.message} className="shadow-none w-full bg-input">
+                    {value ? value : 'Ethereum'}
+                  </Select.Button>
+                }
+                value={value}
+                onChange={onChange}
               >
-                Pay Someone
-              </Menu.Button>
-            }
-          >
-            <Menu.Items unmount={false} className="!min-w-0">
-              <Link passHref={true} href="/stream/create">
-                <Menu.Item as="a">Stream</Menu.Item>
-              </Link>
-              <Link passHref={true} href="/vesting/create">
-                <Menu.Item as="a">Vesting</Menu.Item>
-              </Link>
-            </Menu.Items>
-          </Menu>
-        )}
+                <Select.Options>
+                  {whoCanCancel.map((person, index) => (
+                    <Select.Option key={index} value={person}>
+                      {person}
+                    </Select.Option>
+                  ))}
+                </Select.Options>
+              </Select>
+              <Form.Error message={error?.message}/>
+            </>
+          )}
+        />
+        <Button className="w-auto bg-input text-typo-primary hover:ring-0 focus:ring-0">0x 1Eb9...8c99</Button>
+        <Button className="w-auto bg-input text-typo-primary hover:ring-0 focus:ring-0">
+          <UserIcon width={20} className="text-accent"/>Invite collaborator
+        </Button>
       </div>
-      <div className="flex items-center justify-center ml-2">{renderThemeChanger()}</div>
-    </App.Header>
+    </header>
   )
 }

@@ -1,7 +1,6 @@
 // @ts-check
 /** @type {import('tailwindcss').Config} */
 const tailwindConfig = {
-  darkMode: 'class',
   presets: [require('@sushiswap/ui/tailwind')],
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',

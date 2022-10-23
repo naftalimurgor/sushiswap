@@ -1,7 +1,6 @@
 import '@sushiswap/ui/index.css'
 
-import { App,ToastContainer } from '@sushiswap/ui'
-import { ThemeProvider } from "next-themes"
+import { App,ToastContainer, ThemeProvider } from '@sushiswap/ui'
 import { client } from '@sushiswap/wagmi'
 import { Header } from 'components'
 import { SUPPORTED_CHAINS } from 'config'
@@ -18,6 +17,7 @@ import { Updaters as MulticallUpdaters } from '../lib/state/MulticallUpdaters'
 import { Updaters as TokenListUpdaters } from '../lib/state/TokenListsUpdaters'
 import SEO from '../next-seo.config.mjs'
 import store from '../store'
+import {SideNav} from "../components/SideNav";
 
 declare global {
   interface Window {
@@ -70,15 +70,20 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
       />
       <WagmiConfig client={client}>
         <ReduxProvider store={store}>
-          <ThemeProvider enableSystem={true} attribute="class">
-            <App.Shell>
+          <ThemeProvider>
+            <div className="font-poppins flex items-start">
               <DefaultSeo {...SEO} />
-              <Header />
-              <MulticallUpdaters chainIds={SUPPORTED_CHAINS} />
-              <TokenListUpdaters chainIds={SUPPORTED_CHAINS} />
-              <Component {...pageProps} />
-              <App.Footer />
-            </App.Shell>
+              <aside className="z-30 w-[300px] fixed lg:sticky bottom-0 top-0">
+                <SideNav/>
+              </aside>
+              <div className="flex flex-wrap w-full min-h-screen">
+                <Header/>
+                <MulticallUpdaters chainIds={SUPPORTED_CHAINS} />
+                <TokenListUpdaters chainIds={SUPPORTED_CHAINS} />
+                <Component {...pageProps} />
+                <App.Footer/>
+              </div>
+            </div>
             <ToastContainer className="mt-[50px]" />
           </ThemeProvider>
         </ReduxProvider>

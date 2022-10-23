@@ -82,7 +82,7 @@ export const CreateForm: FC = () => {
             className={`z-10 overflow-hidden overflow-x-auto rounded-xl sm:rounded-2xl bg-primary`}
             defaultIndex={0}
           >
-            <Tab.List className="bg-secondary py-8 flex text-center rounded-none border-none dark:bg-primary">
+            <Tab.List className="bg-primary py-8 flex text-center rounded-none border-none">
               <Tab
                 as={Typography}
                 weight={600}
@@ -106,7 +106,7 @@ export const CreateForm: FC = () => {
                 Vesting Details
               </Tab>
             </Tab.List>
-            <Tab.Panels className="bg-secondary px-3 pb-8 text-typo-primary font-bold lg:px-8 dark:bg-primary">
+            <Tab.Panels className="bg-primary px-3 pb-8 text-typo-primary font-bold lg:px-8">
               <Tab.Panel>
                 <GeneralDetailsSection />
                 <SubmitButton />

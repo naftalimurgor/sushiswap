@@ -39,10 +39,10 @@ export const GeneralDetailsSection = () => {
                 <Select.Button
                   error={!!error?.message}
                   standalone
-                  className="!cursor-pointer dark:bg-input dark:shadow-none"
+                  className="!cursor-pointer !bg-input shadow-none"
                   onClick={() => setDialogOpen(true)}
                 >
-                  {currency?.symbol || <span className="text-slate-500 dark:text-typo-primary">Select a currency</span>}
+                  {currency?.symbol || <span className="text-typo-primary">Select a currency</span>}
                 </Select.Button>
                 <Form.Error message={error?.message} />
                 <TokenSelector
@@ -70,7 +70,7 @@ export const GeneralDetailsSection = () => {
           }}
         />
       </Form.Control>
-      <Form.Control label="Start date" className='text-slate-500 dark:text-typo-primary'>
+      <Form.Control label="Start date" className='text-typo-primary'>
         <Controller
           control={control}
           name="startDate"
@@ -81,7 +81,7 @@ export const GeneralDetailsSection = () => {
                   onChange={onChange}
                   value={value}
                   error={!!error?.message}
-                  className="!ring-offset-slate-900 dark:bg-input dark:shadow-none"
+                  className="!ring-offset-slate-900 !bg-input shadow-none"
                 />
                 <Form.Error message={error?.message} />
               </>
@@ -101,7 +101,7 @@ export const GeneralDetailsSection = () => {
                 onChange={onChange}
                 error={!!error?.message}
                 placeholder="Address or ENS Name"
-                className="ring-offset-slate-900 dark:bg-input dark:shadow-none"
+                className="ring-offset-slate-900 !bg-input shadow-none"
               />
               <Form.Error message={error?.message} />
             </>
@@ -121,15 +121,15 @@ export const GeneralDetailsSection = () => {
                     className={classNames(
                       value === FundSource.BENTOBOX ? 'ring-green/70' : 'ring-transparent',
                       DEFAULT_INPUT_BG,
-                      'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] dark:bg-input dark:shadow-none'
+                      'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                     )}
                   >
-                    <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-slate-300 dark:text-typo-primary">
+                    <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">
                       BentoBox
                     </Typography>
                     <div className="flex flex-col gap-1">
-                      <Typography variant="xs" className="text-input dark:text-secondary">Available Balance</Typography>
-                      <Typography weight={500} variant="xs" className="text-slate-200 dark:text-typo-primary">
+                      <Typography variant="xs" className="text-secondary">Available Balance</Typography>
+                      <Typography weight={500} variant="xs" className="text-typo-primary">
                         {isMounted ? (
                           <>
                             {balance?.[FundSource.BENTOBOX] ? balance[FundSource.BENTOBOX].toSignificant(6) : '0.00'}{' '}
@@ -152,15 +152,15 @@ export const GeneralDetailsSection = () => {
                   className={classNames(
                     value === FundSource.WALLET ? 'ring-green/70' : 'ring-transparent',
                     DEFAULT_INPUT_BG,
-                    'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] dark:bg-input dark:shadow-none'
+                    'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                   )}
                 >
-                  <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-slate-300 dark:text-typo-primary">
+                  <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">
                     Wallet
                   </Typography>
                   <div className="flex flex-col gap-1">
                     <Typography variant="xs">Available Balance</Typography>
-                    <Typography weight={500} variant="xs" className="text-slate-200 dark:text-typo-primary">
+                    <Typography weight={500} variant="xs" className="text-typo-primary">
                       {isMounted ? (
                         <>
                           {balance?.[FundSource.WALLET] ? balance[FundSource.WALLET].toSignificant(6) : '0.00'}{' '}

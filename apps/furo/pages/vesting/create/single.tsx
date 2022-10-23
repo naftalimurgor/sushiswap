@@ -19,9 +19,8 @@ const SingleVesting = () => {
   return (
     <>
       <NextSeo title="New Vesting" />
-      <Layout maxWidth='full' className="dark:bg-input m-0 p-0 px-0 py-0 pb-0 mb-0">
+      <Layout maxWidth='full' className="bg-input m-0 p-0 px-0 py-0 !mb-0">
         <div className="flex gap-x-5 w-full">
-          <SideNav />
           <CreateForm />
         </div>
       </Layout>
