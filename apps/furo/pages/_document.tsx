@@ -9,7 +9,7 @@ class MyDocument extends Document {
         <Head>
           <link href="https://fonts.googleapis.com/css2?family=Inter&display=optional" rel="stylesheet" />
         </Head>
-        <body>
+        <body className="!bg-input">
           <Main />
           <NextScript />
         </body>

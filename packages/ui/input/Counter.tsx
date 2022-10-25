@@ -15,7 +15,7 @@ const matchNonNumbers = /\D+/g
 export const Counter = forwardRef<HTMLInputElement, CounterProps>(
   ({ value, onChange, className, step, error, min, max, ...rest }, ref) => {
     return (
-      <div className="flex w-40">
+      <div className="flex w-full">
         <div
           className={classNames(
             DEFAULT_INPUT_CLASSNAME,

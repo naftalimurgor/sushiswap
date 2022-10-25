@@ -29,7 +29,7 @@ export const GeneralDetailsSection = () => {
       title="General Details"
       description="Furo allows for creating a vested stream using your BentoBox balance."
     >
-      <Form.Control label="Token">
+      <Form.Control label="Token" className="w-full">
         <Controller
           control={control}
           name="currency"
@@ -70,7 +70,8 @@ export const GeneralDetailsSection = () => {
           }}
         />
       </Form.Control>
-      <Form.Control label="Start date" className='text-typo-primary'>
+      <div className="flex flex-col gap-6 md:flex-row w-full">
+      <Form.Control label="Start date" className='text-typo-primary w-1/2'>
         <Controller
           control={control}
           name="startDate"
@@ -81,7 +82,7 @@ export const GeneralDetailsSection = () => {
                   onChange={onChange}
                   value={value}
                   error={!!error?.message}
-                  className="!ring-offset-slate-900 !bg-input shadow-none"
+                  className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent"
                 />
                 <Form.Error message={error?.message} />
               </>
@@ -89,7 +90,7 @@ export const GeneralDetailsSection = () => {
           }}
         />
       </Form.Control>
-      <Form.Control label="Recipient">
+      <Form.Control label="Recipient" className="w-1/2">
         <Controller
           control={control}
           name="recipient"
@@ -101,13 +102,14 @@ export const GeneralDetailsSection = () => {
                 onChange={onChange}
                 error={!!error?.message}
                 placeholder="Address or ENS Name"
-                className="ring-offset-slate-900 !bg-input shadow-none"
+                className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent"
               />
               <Form.Error message={error?.message} />
             </>
           )}
         />
       </Form.Control>
+      </div>
       <Form.Control label="Change Funds Source">
         <Controller
           control={control}
@@ -119,9 +121,9 @@ export const GeneralDetailsSection = () => {
                   <div
                     onClick={() => onChange(FundSource.BENTOBOX)}
                     className={classNames(
-                      value === FundSource.BENTOBOX ? 'ring-green/70' : 'ring-transparent',
+                      value === FundSource.BENTOBOX ? '' : 'ring-transparent',
                       DEFAULT_INPUT_BG,
-                      'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
+                      'rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                     )}
                   >
                     <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">
@@ -150,9 +152,9 @@ export const GeneralDetailsSection = () => {
                 <div
                   onClick={() => onChange(FundSource.WALLET)}
                   className={classNames(
-                    value === FundSource.WALLET ? 'ring-green/70' : 'ring-transparent',
+                    value === FundSource.WALLET ? '' : 'ring-transparent',
                     DEFAULT_INPUT_BG,
-                    'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
+                    'ring-0 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                   )}
                 >
                   <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">

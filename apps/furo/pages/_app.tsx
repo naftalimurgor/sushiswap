@@ -73,15 +73,14 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           <ThemeProvider>
             <div className="font-poppins flex items-start">
               <DefaultSeo {...SEO} />
-              <aside className="z-30 w-[300px] fixed lg:sticky bottom-0 top-0">
+              <aside className="z-[1080] w-[300px] fixed lg:sticky bottom-0 top-0">
                 <SideNav/>
               </aside>
-              <div className="flex flex-wrap w-full min-h-screen">
+              <div className="flex flex-wrap w-full">
                 <Header/>
                 <MulticallUpdaters chainIds={SUPPORTED_CHAINS} />
                 <TokenListUpdaters chainIds={SUPPORTED_CHAINS} />
                 <Component {...pageProps} />
-                <App.Footer/>
               </div>
             </div>
             <ToastContainer className="mt-[50px]" />

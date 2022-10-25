@@ -1,10 +1,15 @@
-import { useIsMounted } from '@sushiswap/hooks'
-import {Button, Form, Menu, Select, Typography} from '@sushiswap/ui'
-import { useRouter } from 'next/router'
 import React, {FC} from 'react'
+import { useIsMounted } from '@sushiswap/hooks'
+import { useRouter } from 'next/router'
 import { useAccount, useConnect } from 'wagmi'
+import { Wallet } from '@sushiswap/wagmi'
+import { SUPPORTED_CHAINS } from 'config'
+import Link from 'next/link'
 import {Controller, useForm} from "react-hook-form"
+import {App, Button, Form, Menu, Select, Typography} from '@sushiswap/ui'
+import { AppType } from '@sushiswap/ui/app/Header'
 import {UserIcon} from "@heroicons/react/solid"
+import { PaperAirplaneIcon } from '@heroicons/react/outline'
 
 type props = {
   tabTitle: string;
@@ -28,42 +33,49 @@ export const Header: FC = ({tabTitle, subTabTitle} : props) => {
   })
 
   return (
-    <header className="w-full bg-white h-auto flex flex-col gap-y-[20px] items-center justify-between p-8 md:flex-row md:h-[80px]">
-      <Typography variant="h3" weight={600} className="text-typo-primary">
-        {`${tabTitle ? tabTitle : ''} ${subTabTitle ? "-" + subTabTitle : ''}`}
-      </Typography>
-      <div className="flex gap-x-[15px]">
-        <Controller
-          control={control}
-          name="cancelContract"
-          render={({field: {onChange, value}, fieldState: {error}}) => (
-            <>
-              <Select
-                button={
-                  <Select.Button error={!!error?.message} className="shadow-none w-full bg-input">
-                    {value ? value : 'Ethereum'}
-                  </Select.Button>
-                }
-                value={value}
-                onChange={onChange}
-              >
-                <Select.Options>
-                  {whoCanCancel.map((person, index) => (
-                    <Select.Option key={index} value={person}>
-                      {person}
-                    </Select.Option>
-                  ))}
-                </Select.Options>
-              </Select>
-              <Form.Error message={error?.message}/>
-            </>
+    <>
+      <App.Header
+        appType={AppType.Furo}
+        className={router.pathname === '/' ? '' : 'w-full bg-white h-auto flex flex-col gap-y-[20px] items-center justify-between px-8 py-4 md:flex-row md:h-[80px]'}
+        withScrollBackground={router.pathname === '/'}
+        maxWidth="full"
+      >
+        <Typography variant="h3" weight={600} className="text-typo-primary">
+          {`${tabTitle ? tabTitle : ''} ${subTabTitle ? "-" + subTabTitle : ''}`}
+        </Typography>
+        <div className="flex items-center gap-2 whitespace-nowrap">
+          <Wallet.Button
+            size="md"
+            hack={connect}
+            supportedNetworks={SUPPORTED_CHAINS}
+            className="!bg-input hover:!bg-accent text-typo-primary hover:text-white hover:ring-0 focus:ring-accent"
+          />
+          {address && isMounted && isConnected && (
+            <Menu
+              button={
+                <Menu.Button
+                  color="blue"
+                  fullWidth
+                  startIcon={<PaperAirplaneIcon width={18} className="transform rotate-45 -mt-0.5" />}
+                  size="sm"
+                  as="div"
+                >
+                  Pay Someone
+                </Menu.Button>
+              }
+            >
+              <Menu.Items unmount={false} className="!min-w-0">
+                <Link passHref={true} href="/stream/create">
+                  <Menu.Item as="a">Stream</Menu.Item>
+                </Link>
+                <Link passHref={true} href="/vesting/create">
+                  <Menu.Item as="a">Vesting</Menu.Item>
+                </Link>
+              </Menu.Items>
+            </Menu>
           )}
-        />
-        <Button className="w-auto bg-input text-typo-primary hover:ring-0 focus:ring-0">0x 1Eb9...8c99</Button>
-        <Button className="w-auto bg-input text-typo-primary hover:ring-0 focus:ring-0">
-          <UserIcon width={20} className="text-accent"/>Invite collaborator
-        </Button>
-      </div>
-    </header>
+        </div>
+      </App.Header>
+      </>
   )
 }

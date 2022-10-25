@@ -12,7 +12,7 @@ const SelectOptions: FC<SelectOptionsProps> = forwardRef(({ className, ...props 
       ref={ref}
       className={classNames(
         className,
-        'absolute z-[100] w-full mt-2 bg-slate-600 overflow-auto shadow-lg shadow-black/20 hide-scrollbar max-h-60 rounded-xl ring-1 ring-black ring-opacity-5 focus:outline-none'
+        'absolute z-[100] w-full mt-2 bg-input text-typo-primary overflow-auto hide-scrollbar max-h-60 rounded-xl ring-0 ring-opacity-5 border-[1px] border-muted focus:outline-none'
       )}
       {...props}
     />

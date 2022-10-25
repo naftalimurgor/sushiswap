@@ -15,7 +15,7 @@ export const CliffDetailsSection: FC = () => {
 
   return (
     <Form.Section title="Cliff details" description="Optionally provide cliff details for your vesting">
-      <Form.Control label="Enable Cliff">
+      <Form.Control label="Enable Cliff" className="w-full">
         <Controller
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -37,7 +37,7 @@ export const CliffDetailsSection: FC = () => {
           name="cliff"
         />
       </Form.Control>
-      <Form.Control disabled={!cliff} label="Cliff End Date">
+      <Form.Control disabled={!cliff} label="Cliff End Date" className="w-full">
         <Controller
           control={control}
           name="cliffEndDate"
@@ -47,20 +47,20 @@ export const CliffDetailsSection: FC = () => {
                 onChange={onChange}
                 value={value}
                 error={!!error?.message}
-                className="!ring-offset-slate-900 text-typo-primary !bg-input shadow-none"
+                className="text-typo-primary !bg-input shadow-none focus:ring-accent focus-within:ring-accent"
               />
               <Form.Error message={error?.message} />
             </>
           )}
         />
       </Form.Control>
-      <Form.Control disabled={!cliff} label="Cliff Amount">
+      <Form.Control disabled={!cliff} label="Cliff Amount" className="w-full">
         <Controller
           control={control}
           name="cliffAmount"
           render={({ field: { onChange, value }, fieldState: { error: validationError } }) => (
             <CurrencyInput
-              className="ring-offset-slate-900 !bg-input shadow-none"
+              className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent"
               fundSource={fundSource}
               account={address}
               onError={(message) => setError('cliffAmount', { type: 'custom', message })}

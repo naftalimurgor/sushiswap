@@ -60,13 +60,13 @@ export const GradedVestingDetailsSection = () => {
 
   return (
     <Form.Section title="Graded Vesting Details" description="Optionally provide graded vesting details">
-      <Form.Control label="Payout per Period">
+      <Form.Control label="Payout per Period" className="w-full">
         <Controller
           control={control}
           name="stepAmount"
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <CurrencyInput.Base
-              className="!bg-input shadow-none !ring-0"
+              className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent"
               onChange={onChange}
               value={value}
               currency={currency}
@@ -91,8 +91,8 @@ export const GradedVestingDetailsSection = () => {
           )}
         />
       </Form.Control>
-      <div className="flex flex-col gap-6 md:flex-row">
-        <Form.Control label="Amount of Periods">
+      <div className="flex flex-col gap-6 md:flex-row w-full">
+        <Form.Control label="Amount of Periods" className="w-1/2">
           <Controller
             control={control}
             name="stepPayouts"
@@ -105,14 +105,14 @@ export const GradedVestingDetailsSection = () => {
                   onChange={onChange}
                   value={value}
                   error={!!error?.message}
-                  className="ring-offset-slate-900 !bg-input shadow-none"
+                  className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent w-full"
                 />
                 <Form.Error message={error?.message} />
               </>
             )}
           />
         </Form.Control>
-        <Form.Control label="Period Length">
+        <Form.Control label="Period Length" className="w-1/2">
           <Controller
             control={control}
             name="stepConfig"
@@ -120,7 +120,7 @@ export const GradedVestingDetailsSection = () => {
               <>
                 <Select
                   button={
-                    <Select.Button error={!!error?.message} className="ring-offset-slate-900 !bg-input shadow-none">
+                    <Select.Button error={!!error?.message} className="!bg-input shadow-none focus:ring-accent focus-within:ring-accent">
                       {value.label}
                     </Select.Button>
                   }
@@ -141,7 +141,7 @@ export const GradedVestingDetailsSection = () => {
           />
         </Form.Control>
       </div>
-      <Form.Control label="Total Amount">
+      <Form.Control label="Total Amount" className="w-full">
         <Controller
           control={control}
           name="insufficientBalance"

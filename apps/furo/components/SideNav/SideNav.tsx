@@ -68,11 +68,11 @@ export const Nav = (props) => {
   const [activeSubTab, setActiveSubTab] = useState({[expanded]: 0});
 
   return(
-    <nav className={`w-[300px] min-h-screen h-screen fixed top-0 right-0 relative bg-secondary text-white overflow-y-auto ${hideOnMobile ? "hidden lg:flex lg:flex-col" : ""}`}>
-      <Link href={"/"}>
-        <Image src={KynosLogo} alt="kynos logo" width="64" height="64" className="cursor-pointer"/>
+    <nav className={`text-center w-[300px] min-h-screen h-screen top-0 right-0 py-8 relative bg-secondary text-white overflow-y-auto ${hideOnMobile ? "hidden lg:block lg:flex-col" : ""}`}>
+      <Link href={`/`} as={`div`} className={`flex items-center justify-center h-[60px] no-underline !overflow-visible w-full`}>
+        <Image src={KynosLogo} alt="kynos logo" className="cursor-pointer"/>
       </Link>
-      <ul className={`pt-[80px] pb-8 pl-4 w-full`}>
+      <ul className={`pt-[40px] pl-4 w-full`}>
         {items.map((item, index) => {
           return (<>
               <li
@@ -128,7 +128,7 @@ export const MobileSideNav = () => {
 
   return (
     <>
-        <span className="z-30 absolute top-4 left-8 p-2 text-primary bg-secondary cursor-pointer rounded-md lg:hidden" onClick={toggle}>
+        <span className="absolute top-4 left-8 p-2 text-primary bg-secondary cursor-pointer rounded-md lg:hidden" onClick={toggle}>
           {
             isOpen ? <XIcon width={25}/>
               : <MenuAlt2Icon width={30}/>

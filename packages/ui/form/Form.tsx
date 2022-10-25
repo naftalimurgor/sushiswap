@@ -22,9 +22,15 @@ const FormRoot: FormRootComponent = ({ header, children, as, ...rest }) => {
   return (
     <Component className="gap-x-10 divide-y divide-slate-800" {...rest}>
       <>
-        <Typography variant="h3" className="text-slate-50 py-6 dark:text-secondary">
-          {header}
-        </Typography>
+        {
+          header
+          ?
+            <Typography variant="h3" className="py-6 text-secondary">
+              {header}
+            </Typography>
+            :
+            ''
+        }
         <div className="divide-y divide-slate-800">{children}</div>
       </>
     </Component>

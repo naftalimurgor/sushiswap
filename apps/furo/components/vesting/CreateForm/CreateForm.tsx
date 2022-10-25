@@ -67,7 +67,7 @@ export const CreateForm: FC = () => {
   const SubmitButton = () => {
     return(
       <Form.Buttons>
-        <Button type="submit" color="blue" disabled={!isValid || isValidating}>
+        <Button type="submit" color="blue" disabled={!isValid || isValidating} className={`bg-accent`}>
           Review Details
         </Button>
       </Form.Buttons>
@@ -76,7 +76,7 @@ export const CreateForm: FC = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <Form header="Create vesting" onSubmit={methods.handleSubmit(() => setReview(true))} className="border-none w-full px-10">
+        <Form onSubmit={methods.handleSubmit(() => setReview(true))} className="border-none w-full">
           <Tab.Group
             as="section"
             className={`z-10 overflow-hidden overflow-x-auto rounded-xl sm:rounded-2xl bg-primary`}
