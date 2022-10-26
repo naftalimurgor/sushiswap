@@ -215,13 +215,6 @@ export const CreateMultipleForm: FC = () => {
 
   return (
     <div className={classNames('flex flex-col gap-10')}>
-      <Link href="/stream/create" passHref={true}>
-        <a>
-          <button className="flex gap-3 font-medium group hover:text-white text-slate-200">
-            <ArrowCircleLeftIcon width={24} height={24} /> <span>Create Stream</span>
-          </button>
-        </a>
-      </Link>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <div
@@ -257,6 +250,7 @@ export const CreateMultipleForm: FC = () => {
                   type="button"
                   onClick={() => setReview(true)}
                   disabled={streams?.length === 0 || !isValid || isValidating}
+                  className="bg-accent w-full"
                 >
                   Review Details
                 </Button>

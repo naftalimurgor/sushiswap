@@ -19,10 +19,7 @@ const MultipleStream = () => {
     <>
       <NextSeo title="New Streams" />
       <Layout>
-        <Breadcrumb home="/dashboard" links={LINKS} />
-        <div className="mt-6">
           <CreateMultipleForm />
-        </div>
       </Layout>
     </>
   )

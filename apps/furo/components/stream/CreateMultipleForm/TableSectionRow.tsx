@@ -34,8 +34,8 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
   } as never)
 
   return (
-    <div className="relative grid grid-cols-[120px_110px_110px_192px_185px_185px_60px] gap-y-3 gap-x-2 px-2 py-0.5">
-      <div className="flex flex-col gap-2">
+    <div className="relative grid grid-cols-[120px_110px_110px_192px_185px_185px_60px] gap-y-3 gap-x-2 px-2 py-3">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.currency`}
@@ -48,7 +48,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                     error?.message ? ERROR_INPUT_CLASSNAME : '',
                     DEFAULT_INPUT_RING,
                     dialogOpen ? 'ring-offset-2 ring-blue' : '',
-                    'w-full flex gap-2 items-center h-[54px] px-4 rounded-md ring-offset-slate-700'
+                    'w-full flex gap-2 items-center h-[27px] px-4 rounded-md ring-offset-slate-700'
                   )}
                   onClick={() => setDialogOpen(true)}
                 >
@@ -82,7 +82,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
           }}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.fundSource`}
@@ -95,7 +95,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                     classNames(
                       DEFAULT_INPUT_RING,
                       open ? 'ring-offset-2 ring-blue' : '',
-                      'w-full flex gap-2 items-center h-[54px] items-center rounded-md px-4 ring-offset-slate-700'
+                      'w-full flex gap-2 items-center h-[27px] items-center rounded-md px-4'
                     )
                   }
                   value={data?.fundSource}
@@ -121,7 +121,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
           )}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.amount`}
@@ -139,7 +139,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
           }}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.recipient`}
@@ -152,21 +152,21 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                 onChange={onChange}
                 error={!!error?.message}
                 placeholder="0x..."
-                className="shadow-none rounded-md !ring-offset-0 h-[54px] ring-offset-slate-700 flex justify-center !bg-slate-700"
+                className="shadow-none rounded-md !ring-offset-0 h-[27px] ring-offset-slate-700 flex justify-center !bg-slate-700"
                 inputClassName="placeholder:font-medium placeholder-slate-500 !bg-slate-700 !rounded-md !text-sm"
               />
             )
           }}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.startDate`}
           render={({ field: { onChange }, fieldState: { error } }) => {
             return (
               <Input.DatetimeLocal
-                className="w-full truncate !ring-offset-0 !shadow-none rounded-md h-[54px] flex justify-center !bg-slate-700 !text-sm"
+                className="w-full truncate !ring-offset-0 !shadow-none rounded-md h-[27px] flex justify-center !bg-slate-700 !text-sm"
                 value={data?.startDate}
                 onChange={onChange}
                 error={!!error?.message}
@@ -175,14 +175,14 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
           }}
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <Controller
           control={control as never}
           name={`streams.${index}.endDate`}
           render={({ field: { onChange }, fieldState: { error } }) => {
             return (
               <Input.DatetimeLocal
-                className="w-full truncate !ring-offset-0 !shadow-none rounded-md h-[54px] flex justify-center !bg-slate-700 !text-sm"
+                className="w-full truncate !ring-offset-0 !shadow-none rounded-md h-[27px] flex justify-center !bg-slate-700 !text-sm"
                 value={data?.endDate}
                 onChange={onChange}
                 error={!!error?.message}
@@ -191,7 +191,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
           }}
         />
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <div className="flex items-center">
           <IconButton onClick={() => onRemove(index)}>
             <MinusCircleIcon width={20} height={20} className="text-red" />

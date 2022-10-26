@@ -19,7 +19,6 @@ const SingleStream = () => {
     <>
       <NextSeo title="New Stream" />
       <Layout>
-        <Breadcrumb home="/dashboard" links={LINKS} />
         <div className="mt-6">
           <CreateForm />
         </div>

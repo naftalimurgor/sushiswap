@@ -31,7 +31,7 @@ export const StreamAmountDetails = () => {
       title="Stream Details"
       description="Furo allows you to create a stream from BentoBox to allow the recipient to gain yield whilst receiving the stream if the token that's being used has a BentoBox strategy set on it."
     >
-      <Form.Control label="Token">
+      <Form.Control label="Token" className="w-full">
         <Controller
           control={control}
           name="currency"
@@ -41,10 +41,10 @@ export const StreamAmountDetails = () => {
                 <Select.Button
                   error={!!error?.message}
                   standalone
-                  className="!cursor-pointer ring-offset-slate-900"
+                  className="!cursor-pointer ring-accent"
                   onClick={() => setDialogOpen(true)}
                 >
-                  {currency?.symbol || <span className="text-slate-500">Select a currency</span>}
+                  {currency?.symbol || <span className="text-disabled">Select a currency</span>}
                 </Select.Button>
                 <Form.Error message={error?.message} />
                 <TokenSelector
@@ -84,17 +84,17 @@ export const StreamAmountDetails = () => {
                   <div
                     onClick={() => onChange(FundSource.BENTOBOX)}
                     className={classNames(
-                      value === FundSource.BENTOBOX ? 'ring-green/70' : 'ring-transparent',
+                      value === FundSource.BENTOBOX ? '' : 'ring-transparent',
                       DEFAULT_INPUT_BG,
-                      'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px]'
+                      'rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                     )}
                   >
-                    <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-slate-300">
+                    <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">
                       BentoBox
                     </Typography>
                     <div className="flex flex-col gap-1">
                       <Typography variant="xs">Available Balance</Typography>
-                      <Typography weight={500} variant="xs" className="text-slate-200">
+                      <Typography weight={500} variant="xs" className="text-typo-primary">
                         {isMounted ? (
                           <>
                             {balance?.[FundSource.BENTOBOX] ? balance[FundSource.BENTOBOX].toSignificant(6) : '0.00'}{' '}
@@ -107,7 +107,7 @@ export const StreamAmountDetails = () => {
                     </div>
                     {value === FundSource.BENTOBOX && (
                       <div className="absolute w-5 h-5 top-3 right-3">
-                        <CheckCircleIcon className="text-green/70" />
+                        <CheckCircleIcon className="text-accent" />
                       </div>
                     )}
                   </div>
@@ -116,11 +116,11 @@ export const StreamAmountDetails = () => {
                   onClick={() => onChange(FundSource.WALLET)}
                   className={classNames(
                     DEFAULT_INPUT_BG,
-                    value === FundSource.WALLET ? 'ring-green/70' : 'ring-transparent',
-                    'ring-2 ring-offset-2 ring-offset-slate-900 rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px]'
+                    value === FundSource.WALLET ? '' : 'ring-transparent',
+                    'rounded-xl px-5 py-3 cursor-pointer relative flex flex-col justify-center gap-3 min-w-[140px] !bg-input shadow-none'
                   )}
                 >
-                  <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-slate-300">
+                  <Typography weight={500} variant="sm" className="!leading-5 tracking-widest text-typo-primary">
                     Wallet
                   </Typography>
                   <div className="flex flex-col gap-1">

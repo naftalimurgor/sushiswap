@@ -54,7 +54,7 @@ export const GeneralDetailsSection = () => {
           />
         </Form.Control>
       </div>
-      <Form.Control label="Recipient">
+      <Form.Control label="Recipient" className="w-full">
         <Controller
           control={control}
           name="recipient"

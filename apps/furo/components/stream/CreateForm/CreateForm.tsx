@@ -5,7 +5,7 @@ import { Amount, Currency } from '@sushiswap/currency'
 import { FundSource } from '@sushiswap/hooks'
 import log from '@sushiswap/log'
 import { JSBI } from '@sushiswap/math'
-import { Button, createToast, Dots, Form } from '@sushiswap/ui'
+import {Button, createToast, Dots, Form, Tab, Typography} from '@sushiswap/ui'
 import { BENTOBOX_ADDRESS, useBentoBoxTotal, useFuroStreamRouterContract } from '@sushiswap/wagmi'
 import { Approve } from '@sushiswap/wagmi/systems'
 import { approveBentoBoxAction, batchAction, streamCreationAction } from 'lib'
@@ -18,6 +18,7 @@ import { CreateStreamFormData, CreateStreamFormDataValidated } from '../types'
 import { GeneralDetailsSection } from './GeneralDetailsSection'
 import { createStreamSchema } from './schema'
 import { StreamAmountDetails } from './StreamAmountDetails'
+import {CliffDetailsSection, GradedVestingDetailsSection} from "../../vesting";
 
 export const CreateForm: FC = () => {
   const { address } = useAccount()
@@ -141,37 +142,73 @@ export const CreateForm: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeChain?.id, address])
 
+  const SubmitButton = () => {
+    return (
+      <Form.Buttons className="flex flex-col items-end gap-3">
+        <Approve
+          className="!items-end"
+          components={
+            <Approve.Components>
+              <Approve.Bentobox address={contract?.address} onSignature={setSignature} />
+              <Approve.Token
+                amount={amountAsEntity}
+                address={activeChain?.id ? BENTOBOX_ADDRESS[activeChain.id] : undefined}
+              />
+            </Approve.Components>
+          }
+          onSuccess={createNotification}
+          render={({ approved }) => (
+            <Button
+              type="submit"
+              variant="filled"
+              disabled={isWritePending || !approved || !isValid || isValidating}
+              className="w-full bg-accent"
+            >
+              {isWritePending ? <Dots>Confirm transaction</Dots> : 'Create stream'}
+            </Button>
+          )}
+        />
+      </Form.Buttons>
+    );
+  }
+
   return (
     <>
       <FormProvider {...methods}>
-        <Form header="Create Stream" onSubmit={methods.handleSubmit(onSubmit)}>
-          <GeneralDetailsSection />
-          <StreamAmountDetails />
-          <Form.Buttons className="flex flex-col items-end gap-3">
-            <Approve
-              className="!items-end"
-              components={
-                <Approve.Components>
-                  <Approve.Bentobox address={contract?.address} onSignature={setSignature} />
-                  <Approve.Token
-                    amount={amountAsEntity}
-                    address={activeChain?.id ? BENTOBOX_ADDRESS[activeChain.id] : undefined}
-                  />
-                </Approve.Components>
-              }
-              onSuccess={createNotification}
-              render={({ approved }) => (
-                <Button
-                  type="submit"
-                  variant="filled"
-                  color="gradient"
-                  disabled={isWritePending || !approved || !isValid || isValidating}
-                >
-                  {isWritePending ? <Dots>Confirm transaction</Dots> : 'Create stream'}
-                </Button>
-              )}
-            />
-          </Form.Buttons>
+        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+          <Tab.Group
+            as="section"
+            className={`z-10 overflow-hidden overflow-x-auto rounded-xl sm:rounded-2xl bg-primary w-1/2`}
+            defaultIndex={0}
+          >
+            <Tab.List className="bg-primary py-8 flex text-center rounded-none border-none">
+              <Tab
+                as={Typography}
+                weight={600}
+                size="sm"
+                className="bg-transparent focus:text-accent hover:text-accent"
+              >
+                General Details
+              </Tab>
+              <Tab
+                as={Typography}
+                weight={600}
+                className="bg-transparent focus:text-accent hover:text-accent"
+              >
+                Stream Amount
+              </Tab>
+            </Tab.List>
+            <Tab.Panels className="bg-primary px-3 pb-8 text-typo-primary font-bold lg:px-8">
+              <Tab.Panel>
+                <GeneralDetailsSection />
+                <SubmitButton />
+              </Tab.Panel>
+              <Tab.Panel>
+                <StreamAmountDetails />
+                <SubmitButton />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
         </Form>
       </FormProvider>
     </>

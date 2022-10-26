@@ -26,30 +26,30 @@ export const TableSection = () => {
         <div
           className={classNames(
             fields?.length === 0 ? 'rounded-2xl' : 'rounded-t-2xl',
-            'bg-slate-800 rounded-t-xl grid grid-cols-[120px_110px_110px_192px_185px_185px_60px] gap-y-3 gap-x-2 py-[18px] px-6'
+            'bg-white rounded-t-xl grid grid-cols-[120px_110px_110px_192px_185px_185px_60px] gap-y-3 gap-x-2 py-[18px] px-6 shadow-sm'
           )}
         >
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             Currency
           </Typography>
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             Fund Source
           </Typography>
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             Amount
           </Typography>
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             Recipient
           </Typography>
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             Start Date
           </Typography>
-          <Typography variant="sm" weight={500} className="text-slate-500">
+          <Typography variant="sm" weight={500} className="text-typo-primary">
             End Date
           </Typography>
           <div />
         </div>
-        <div className="flex flex-col bg-slate-700 rounded-b-2xl">
+        <div className="flex flex-col bg-secondary rounded-b-2xl">
           {fields.map((field, index) => (
             <TableSectionRow index={index} key={index} control={control} onRemove={remove} onCopy={append} />
           ))}
@@ -57,8 +57,9 @@ export const TableSection = () => {
       </div>
       <div className="flex px-2 mt-3">
         <Button
+          className="ml-auto !ring-0"
           type="button"
-          variant="empty"
+          variant="filled"
           size="sm"
           startIcon={<PlusIcon width={16} height={16} />}
           onClick={() =>

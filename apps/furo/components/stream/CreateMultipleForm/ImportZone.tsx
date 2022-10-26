@@ -150,8 +150,8 @@ export const ImportZone: FC<ImportZone> = ({ onErrors }) => {
   return (
     <>
       <div className="flex flex-col gap-3">
-        <Typography weight={500}>Quick Import</Typography>
-        <Typography variant="sm" weight={400} className="text-slate-400">
+        <Typography weight={500} className="text-typo-primary">Quick Import</Typography>
+        <Typography variant="sm" weight={400} className="text-disabled">
           Autofill your list by uploading a .csv file to save time and effort! Please use the demo file to check if your
           data is formatted correctly.
         </Typography>
@@ -159,7 +159,7 @@ export const ImportZone: FC<ImportZone> = ({ onErrors }) => {
           <Button
             type="button"
             onClick={downloadExample}
-            className="mt-4 px-6"
+            className="mt-4 px-6 w-full"
             startIcon={<DownloadIcon width={20} height={20} />}
           >
             Example

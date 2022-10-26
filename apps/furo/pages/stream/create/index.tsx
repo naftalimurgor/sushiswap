@@ -15,20 +15,19 @@ const StreamingCreate = () => {
     <>
       <NextSeo title="New Stream" />
       <Layout>
-        <Breadcrumb home="/dashboard" links={LINKS} />
-        <div className="mt-24">
-          <div className="flex flex-col justify-center gap-10">
-            <Typography variant="h3" weight={500} className="text-center">
+        <div>
+          <div className="flex flex-col justify-center items-center gap-10">
+            <Typography variant="h3" weight={500} className="text-center text-typo-primary">
               How many streams would you like to create?
             </Typography>
-            <div className="flex justify-center gap-10">
+            <div className="flex flex-col lg:flex-row justify-center gap-10">
               <Link href="/stream/create/single" passHref={true}>
                 <a>
-                  <button className="pt-[74px] relative cursor-pointer transition-all hover:scale-[1.02] group flex flex-col gap-10 items-center w-[240px] h-[280px] bg-slate-800 rounded-md hover:shadow-xl hover:shadow-blue-900/30">
-                    <div className="w-[56px] h-[56px] bg-blue-600 group-hover:bg-blue rounded-md" />
+                  <button className="pt-[74px] relative cursor-pointer transition-all hover:scale-[1.02] group flex flex-col gap-10 items-center w-[240px] h-[280px] bg-white rounded-md hover:shadow-xl">
+                    <div className="w-[56px] h-[56px] bg-accent rounded-md" />
                     <Typography
                       weight={500}
-                      className="absolute bottom-[60px] left-0 right-0 text-center text-slate-400 group-hover:text-slate-200"
+                      className="absolute bottom-[60px] left-0 right-0 text-center text-typo-primary font-bold"
                     >
                       One
                     </Typography>
@@ -37,16 +36,16 @@ const StreamingCreate = () => {
               </Link>
               <Link href="/stream/create/multiple" passHref={true}>
                 <a>
-                  <button className="pt-[60px] relative cursor-pointer transition-all hover:scale-[1.02] group flex flex-col gap-10 items-center  w-[240px] h-[280px] bg-slate-800 rounded-md hover:shadow-xl hover:shadow-blue-900/30">
+                  <button className="pt-[60px] relative cursor-pointer transition-all hover:scale-[1.02] group flex flex-col gap-10 items-center  w-[240px] h-[280px] bg-white rounded-md hover:shadow-xl hover:shadow-slate-300">
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="w-[40px] h-[40px] bg-blue-600 group-hover:bg-blue rounded-md" />
-                      <div className="w-[40px] h-[40px] bg-blue-600 group-hover:bg-blue rounded-md" />
-                      <div className="w-[40px] h-[40px] bg-blue-600 group-hover:bg-blue rounded-md" />
-                      <div className="w-[40px] h-[40px] bg-blue-600 group-hover:bg-blue rounded-md" />
+                      <div className="w-[40px] h-[40px] bg-accent rounded-md" />
+                      <div className="w-[40px] h-[40px] bg-accent rounded-md" />
+                      <div className="w-[40px] h-[40px] bg-accent rounded-md" />
+                      <div className="w-[40px] h-[40px] bg-accent rounded-md" />
                     </div>
                     <Typography
                       weight={500}
-                      className="absolute bottom-[60px] left-0 right-0 text-center text-slate-400 group-hover:text-slate-200"
+                      className="absolute bottom-[60px] left-0 right-0 text-center text-typo-primary font-bold"
                     >
                       Multiple
                     </Typography>
