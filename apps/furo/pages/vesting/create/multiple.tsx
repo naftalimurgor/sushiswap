@@ -19,7 +19,6 @@ const MultipleVesting = () => {
     <>
       <NextSeo title="New Vestings" />
       <Layout>
-        <Breadcrumb home="/dashboard" links={LINKS} />
         <div className="mt-6">
           <CreateMultipleForm />
         </div>

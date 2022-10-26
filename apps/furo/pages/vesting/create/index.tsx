@@ -15,12 +15,11 @@ const VestingCreate = () => {
     <>
       <NextSeo title="New Vesting" />
       <Layout className={`flex items-center justify-center`}>
-        <div className="mt-24">
           <div className="flex flex-col justify-center gap-10">
             <Typography variant="h3" weight={500} className="text-center text-typo-primary">
               How many vestings would you like to create?
             </Typography>
-            <div className="flex justify-center gap-10">
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-10">
               <Link href="/vesting/create/single" passHref={true}>
                 <a>
                   <button className="pt-[74px] relative cursor-pointer transition-all hover:scale-[1.02] group flex flex-col gap-10 items-center w-[240px] h-[280px] bg-white rounded-md hover:shadow-xl hover:shadow-slate-300">
@@ -54,7 +53,6 @@ const VestingCreate = () => {
               </Link>
             </div>
           </div>
-        </div>
       </Layout>
     </>
   )

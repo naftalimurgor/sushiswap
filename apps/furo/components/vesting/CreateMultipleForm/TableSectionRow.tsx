@@ -53,7 +53,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
     <Disclosure>
       {({ close }) => (
         <div className="flex flex-col">
-          <div className="relative grid grid-cols-[100px_160px_100px_160px_160px_160px_40px] gap-y-3 gap-x-2 px-2 py-0.5">
+          <div className="relative grid grid-cols-[100px_160px_100px_160px_160px_160px_40px] gap-y-3 gap-x-2 p-2">
             <div className="flex flex-col gap-2">
               <Controller
                 control={control as never}
@@ -222,14 +222,14 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
               </div>
             </div>
           </div>
-          <Disclosure.Panel className={classNames(last ? 'rounded-b-2xl' : '', 'bg-slate-800')}>
-            <div className="flex gap-5">
+          <Disclosure.Panel className={classNames(last ? 'rounded-b-2xl' : '', 'bg-white')}>
+            <div className="flex gap-5 text-typo-primary">
               <div className="flex flex-col flex-grow gap-10 p-6">
                 <div className="flex gap-6 items-center">
                   <Typography weight={500} variant="sm">
                     Vesting Schedule
                   </Typography>
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-2 items-center ml-auto">
                     <Typography variant="sm" className="text-slate-400">
                       Enable Cliff
                     </Typography>
@@ -256,7 +256,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                   </div>
                 </div>
                 <div className="flex gap-6">
-                  <Form.Control disabled={!data?.cliff} label="Cliff End Date">
+                  <Form.Control disabled={!data?.cliff} label="Cliff End Date" className="w-1/2">
                     <Controller
                       name={`vestings.${index}.cliffEndDate`}
                       control={control}
@@ -266,14 +266,14 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                             onChange={onChange}
                             value={data?.cliffEndDate}
                             error={!!error?.message}
-                            className="!ring-offset-slate-800"
+                            className="!ring-0"
                           />
                           <Form.Error message={error?.message} />
                         </>
                       )}
                     />
                   </Form.Control>
-                  <Form.Control disabled={!data?.cliff} label="Cliff Amount">
+                  <Form.Control disabled={!data?.cliff} label="Cliff Amount" className="w-1/2">
                     <Controller
                       control={control}
                       name={`vestings.${index}.cliffAmount`}
@@ -290,13 +290,13 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                   </Form.Control>
                 </div>
                 <div className="flex flex-col gap-6 md:flex-row">
-                  <Form.Control label="Payout per Period" className="max-w-[240px]">
+                  <Form.Control label="Payout per Period" className="w-1/3">
                     <Controller
                       name={`vestings.${index}.stepAmount`}
                       control={control}
                       render={({ field: { onChange, value }, fieldState: { error } }) => (
                         <CurrencyInput.Base
-                          className="ring-offset-slate-800"
+                          className="ring-offset-accent"
                           onChange={onChange}
                           value={value}
                           currency={data?.currency as Type | undefined}
@@ -321,14 +321,14 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                       )}
                     />
                   </Form.Control>
-                  <Form.Control label="Amount of Periods">
+                  <Form.Control label="Amount of Periods" className="w-1/3">
                     <Controller
                       control={control}
                       name={`vestings.${index}.stepPayouts`}
                       render={({ field: { onChange, value }, fieldState: { error } }) => (
                         <>
                           <Input.Counter
-                            className="ring-offset-slate-800"
+                            className="ring-acent"
                             step={1}
                             min={0}
                             max={100}
@@ -341,7 +341,7 @@ export const TableSectionRow: FC<TableSectionRow> = ({ control, index, onRemove,
                       )}
                     />
                   </Form.Control>
-                  <Form.Control label="Period Length">
+                  <Form.Control label="Period Length" className="w-1/3">
                     <Controller
                       name={`vestings.${index}.stepConfig`}
                       control={control}

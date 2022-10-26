@@ -19,8 +19,8 @@ export const Dropzone: FC<Dropzone> = ({ label = 'Select a CSV file to upload', 
               isDragReject
                 ? 'bg-red-500 bg-opacity-[0.15] border-red'
                 : isDragActive
-                ? 'bg-blue-500 bg-opacity-[0.15] border-blue'
-                : 'bg-slate-800 border-slate-200/5',
+                ? 'bg-accent bg-opacity-[0.15] border-blue'
+                : 'bg-white shadow-sm border-slate-200/5',
               'border-dashed  border-2 rounded-xl py-6 flex justify-center'
             )}
           >
@@ -35,16 +35,16 @@ export const Dropzone: FC<Dropzone> = ({ label = 'Select a CSV file to upload', 
                 xmlSpace="preserve"
               >
                 <path
-                  className="text-slate-700"
+                  className="text-accent"
                   fill="currentColor"
                   d="M52.4 448c-5.6 0-5.6-7.2-5.6-12V23.2c0-4.8 0-7.2 5.6-7.2h344.8c4.8 0 9.6 2.4 9.6 7.2V436c0 4.8-4.8 12-9.6 12H52.4z"
                 />
                 <path
-                  className="text-slate-700"
+                  className="text-white"
                   fill="currentColor"
                   d="M390.8 32v400h-328V32h328m6.4-32H52.4C38 0 30.8 9.6 30.8 23.2V436c0 13.6 7.2 28 21.6 28h344.8c13.6 0 25.6-14.4 25.6-28V23.2c0-13.6-12-23.2-25.6-23.2z"
                 />
-                <g className="text-slate-500" fill="currentColor">
+                <g className="text-white" fill="currentColor">
                   <path d="M134 120h188.8c6.4 0 12-5.6 12-12s-5.6-12-12-12H134c-6.4 0-12 5.6-12 12s5.6 12 12 12zM134 184h108.8c6.4 0 12-5.6 12-12s-4.8-12-11.2-12H134c-6.4 0-12 5.6-12 12s5.6 12 12 12zM322.8 224H134c-6.4 0-12 9.6-12 16s5.6 16 12 16h188.8c6.4 0 12-9.6 12-16s-4.8-16-12-16zM243.6 296H134c-6.4 0-12 5.6-12 12s5.6 12 12 12h108.8c6.4 0 12-5.6 12-12 .8-6.4-4.8-12-11.2-12z"></path>
                 </g>
                 <circle
@@ -52,7 +52,7 @@ export const Dropzone: FC<Dropzone> = ({ label = 'Select a CSV file to upload', 
                   cy="389.6"
                   r="108"
                   fill="currentColor"
-                  className={isDragReject ? 'text-red' : isDragActive ? 'text-blue' : 'text-slate-600'}
+                  className={isDragReject ? 'text-red' : isDragActive ? 'text-accent' : 'text-disabled'}
                 />
                 <path
                   className="text-white"
@@ -68,8 +68,8 @@ export const Dropzone: FC<Dropzone> = ({ label = 'Select a CSV file to upload', 
                     isDragReject
                       ? 'text-red hover:text-red-400'
                       : isDragActive
-                      ? 'text-blue hover:text-blue-400'
-                      : 'text-slate-200',
+                      ? 'text-blue hover:text-accent'
+                      : 'text-typo-primary',
                     'flex flex-col gap-1 outline-none relative cursor-pointer rounded-md font-medium hover:purple focus-within:outline-none'
                   )}
                 >

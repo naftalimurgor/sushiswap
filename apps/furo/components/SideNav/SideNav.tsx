@@ -32,7 +32,6 @@ const items = [
   {
     name: "Transactions",
     subTabs: ["Vesting", "Payment",],
-    url: "/vesting/create",
     icon: TransactionsIcon,
     disabled: false,
   },
@@ -105,7 +104,7 @@ export const Nav = (props) => {
                       <Typography
                         variant="sm"
                         className={`cursor-pointer p-2 rounded-md ${activeSubTab[index] === i ? "text-accent" : ""}`}>
-                        <Link href={`/vesting/create/single`}>
+                        <Link href={`/vesting/create/`}>
                           {subTab}
                         </Link>
                       </Typography>

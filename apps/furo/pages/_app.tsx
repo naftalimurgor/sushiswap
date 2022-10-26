@@ -76,11 +76,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
               <aside className="z-[1080] w-[300px] fixed lg:sticky bottom-0 top-0">
                 <SideNav/>
               </aside>
-              <div className="flex flex-wrap w-full">
+              <div className="flex flex-wrap w-full min-h-screen">
                 <Header/>
                 <MulticallUpdaters chainIds={SUPPORTED_CHAINS} />
                 <TokenListUpdaters chainIds={SUPPORTED_CHAINS} />
-                <Component {...pageProps} />
+                <Component {...pageProps} className="flex flex-grow items-center justify-center"/>
               </div>
             </div>
             <ToastContainer className="mt-[50px]" />

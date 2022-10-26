@@ -67,7 +67,7 @@ export const CreateForm: FC = () => {
   const SubmitButton = () => {
     return(
       <Form.Buttons>
-        <Button type="submit" color="blue" disabled={!isValid || isValidating} className={`bg-accent`}>
+        <Button type="submit" color="blue" disabled={!isValid || isValidating} className={`bg-accent w-full`}>
           Review Details
         </Button>
       </Form.Buttons>
