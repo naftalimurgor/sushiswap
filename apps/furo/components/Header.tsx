@@ -36,7 +36,7 @@ export const Header: FC = ({tabTitle, subTabTitle} : props) => {
     <>
       <App.Header
         appType={AppType.Furo}
-        className={router.pathname === '/' ? '' : 'w-full bg-white h-auto flex flex-col gap-y-[20px] items-center justify-between px-8 py-4 md:flex-row md:h-[80px]'}
+        className={'w-full bg-white h-auto flex flex-col gap-y-[20px] items-center justify-between px-8 py-4 md:flex-row md:h-[80px]'}
         withScrollBackground={router.pathname === '/'}
         maxWidth="full"
       >

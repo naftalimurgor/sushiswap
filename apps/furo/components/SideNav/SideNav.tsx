@@ -7,7 +7,6 @@ import {useRouter} from "next/router";
 import Image from 'next/image'
 import {KynosLogo, DashboardIcon, StakeholdersIcon, CapTableIcon, ScenariosIcon, TransactionsIcon, DocumentsIcon, InvestorRelationsIcon, CompanySettingsIcon} from '../images'
 
-// TODO: better url handling
 const items = [
   {
     name: "Dashboard",
@@ -34,11 +33,11 @@ const items = [
     subTabs: [
       {
         name: "Vesting",
-        url: "/vesting/create/"
+        url: "/vesting/create"
       },
       {
         name: "Payment",
-        url: "/stream/create/"
+        url: "/stream/create"
       }
     ],
     icon: TransactionsIcon,
@@ -61,24 +60,30 @@ const items = [
   }
 ];
 
+// TODO: Handle active state better
+let activeItems = {tab: null, subTab: 1};
 const activeIndex = (items, router) => {
-  const activeItem = items.find((item) => {
-    return item.url === router.pathname;
+  items.map((item, index) => {
+    item.subTabs?.find(
+      (subTab, i) => {
+        subTab.url === router.pathname ? activeItems = {tab: index, subTab: i} : null;
+      }
+    );
   });
-  return items.indexOf(activeItem);
+  return activeItems;
 }
 
-// TODO: automatically get active sub-tab
 export const Nav = (props) => {
   const router = useRouter();
   const hideOnMobile = props.hideOnMobile ? props.hideOnMobile : false;
-  const [expanded, setExpanded] = useState(activeIndex(items, router));
-  const [activeSubTab, setActiveSubTab] = useState({[expanded]: 0});
+  const [expanded, setExpanded] = useState(activeIndex(items, router).tab);
+  const [currentSubTab, setCurrentSubTab] = useState(activeItems.subTab);
+  const [activeSubTab, setActiveSubTab] = useState({[expanded]: currentSubTab});
 
   return(
     <nav className={`text-center w-[300px] min-h-screen h-screen top-0 right-0 py-8 relative bg-secondary text-white overflow-y-auto ${hideOnMobile ? "hidden lg:block lg:flex-col" : ""}`}>
-      <Link href={`/`} as={`div`} className={`flex items-center justify-center h-[60px] no-underline !overflow-visible w-full`}>
-        <Image src={KynosLogo} alt="kynos logo" className="cursor-pointer"/>
+      <Link href={`/`} className={`flex items-center justify-center h-[60px] no-underline !overflow-visible w-full`}>
+        <Image src={KynosLogo} alt="kynos logo" className="cursor-pointer" onClick={() => setExpanded(-1)}/>
       </Link>
       <ul className={`pt-[40px] pl-4 w-full`}>
         {items.map((item, index) => {
@@ -86,7 +91,7 @@ export const Nav = (props) => {
               <li
                 key={index}
                 className={`flex flex-wrap items-center justify-start gap-x-2 p-4 my-2 ${index === expanded ? 'bg-accent bg-opacity-10 border-r-4 border-accent rounded-l-md text-accent' : 'rounded-md text-white'} font-bold ${item.disabled ? 'opacity-30 cursor-default' : 'cursor-pointer'}`}
-                onClick={() => {!item.disabled ? setExpanded(index) : ''; setActiveSubTab({[index]: 0})}}
+                onClick={() => {!item.disabled ? setExpanded(index) : ''; setActiveSubTab({[index]: -1})}}
               >
                 {item?.icon
                   ?
@@ -102,7 +107,7 @@ export const Nav = (props) => {
                     :
                     item.name
                 }
-                {item.subTabs ? (expanded ? <ChevronUpIcon className="w-5 h-5 ml-auto"/>
+                {item.subTabs ? (expanded >= 0 ? <ChevronUpIcon className="w-5 h-5 ml-auto"/>
                   : <ChevronUpIcon className="w-5 h-5 rotate-180 ml-auto"/>) : ''}
               </li>
               {item.subTabs ? <>

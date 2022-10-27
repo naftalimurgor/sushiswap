@@ -84,7 +84,7 @@ export const Button = <C extends React.ElementType>({
               }
             >
               <Menu.Items className="z-[100]">
-                <div>
+                <div className="text-typo-primary">
                   {isMounted &&
                     connectors.map((connector) => (
                       <Menu.Item
@@ -92,7 +92,7 @@ export const Button = <C extends React.ElementType>({
                         onClick={() => connect({ connector })}
                         className="flex items-center gap-3 group"
                       >
-                        <div className="-ml-[6px] group-hover:bg-blue-100 rounded-full group-hover:ring-[5px] group-hover:ring-blue-100">
+                        <div className="-ml-[6px] group-hover:bg-accent rounded-full group-hover:ring-[5px] group-hover:ring-accent">
                           {Icons[connector.name] && Icons[connector.name]}
                         </div>{' '}
                         {connector.name == 'Safe' ? 'Gnosis Safe' : connector.name}
