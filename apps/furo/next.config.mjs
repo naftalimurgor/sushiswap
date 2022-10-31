@@ -15,6 +15,10 @@ const nextConfig = {
   basePath: '/furo',
   reactStrictMode: true,
   swcMinify: true,
+  typescript: {
+    // https://nextjs.org/docs/api-reference/next.config.js/ignoring-typescript-errors
+    ignoreBuildErrors: true,
+  },
 }
 
 export default withTranspileModules(nextConfig)
